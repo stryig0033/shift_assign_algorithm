@@ -7,8 +7,13 @@ import pandas as pd
 
 def required_employees(data):
     
+    # 辞書型データをリストに変換
+    data_list = []
+    for floor, info in data.items():
+        data_list.append([floor, info['room'], info['guests_num'], info['time_start'], info['time_end']])
+
     # データフレームの作成
-    df = pd.DataFrame(data, columns=["floor", "room", "num", "start", "end"])
+    df = pd.DataFrame(data_list, columns=["floor", "room", "num", "start", "end"])
 
     # 初期化
     def initialize_employee_count_dict():
